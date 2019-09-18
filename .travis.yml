@@ -5,8 +5,7 @@ os:
   - osx
 julia:
   - nightly
-  - 0.6
-  - 0.5
+  - 1.0
 matrix:
   allow_failures:
     - julia: nightly
@@ -14,5 +13,4 @@ notifications:
   email: false
 script:
 #  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia -e 'Pkg.clone(pwd())'
-  - julia -e 'Pkg.test("GARCH")'
+  - julia -e 'using Pkg; Pkg.clone(pwd()); Pkg.test("GARCH")'
