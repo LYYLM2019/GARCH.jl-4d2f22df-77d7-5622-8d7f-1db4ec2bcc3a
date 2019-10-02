@@ -5,7 +5,7 @@
 "Generalized Autoregressive Conditional Heteroskedastic (GARCH) models for Julia."
 module GARCH
 
-using NLopt, Distributions, Printf, LinearAlgebra, SpecialFunctions
+using NLopt, Distributions, Printf, LinearAlgebra, SpecialFunctions, TimeSeries
 
 export garchFit, predict
 
@@ -164,5 +164,7 @@ function garchFit(y::Vector)
     tval = minx ./ secoef
     GarchFit(y, minx, -minf, ret, converged, sqrt.(h), H, cvar, secoef, tval)
 end
+
+garchFit(y::TimeArray) = garchFit(values(y))
 
 end  #module
